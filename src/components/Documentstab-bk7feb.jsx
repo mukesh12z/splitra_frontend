@@ -4,8 +4,6 @@ import api from '../services/api';
 
 const DOC_TYPES = ['Passport', 'Visa', 'Insurance', 'Booking Confirmation', 'ID Card', 'Other'];
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-
 export default function DocumentsTab({ group, currentUser }) {
   const [docs,       setDocs]       = useState([]);
   const [loading,    setLoading]    = useState(true);
@@ -136,13 +134,8 @@ export default function DocumentsTab({ group, currentUser }) {
               )}
 
               {doc.fileUrl && (
-                <a 
-                  href={`${API_URL}${doc.fileUrl}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1 text-xs text-indigo-600 hover:underline mt-2"
-                >
+                <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-indigo-600 hover:underline mt-2">
                   <Upload size={12}/> View uploaded file
                 </a>
               )}

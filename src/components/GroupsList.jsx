@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Users, Calendar, MapPin, X } from 'lucide-react';
 import api from '../services/api';
+import CurrencySelector from './CurrencySelector';
+
 
 function GroupsList({ currentUser, onSelectGroup }) {
   const [groups, setGroups] = useState([]);
@@ -216,12 +218,14 @@ function GroupsList({ currentUser, onSelectGroup }) {
                 >
                   Cancel
                 </button>
+                 <CurrencySelector />  {/* ← Add this */}
                 <button
                   type="submit"
                   className="flex-1 px-4 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700"
                 >
                   Create Group
                 </button>
+                
               </div>
             </form>
           </div>
