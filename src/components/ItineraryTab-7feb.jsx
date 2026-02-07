@@ -55,7 +55,7 @@ export default function ItineraryTab({ group }) {
 
   const fetchItems = async () => {
     try {
-      const { data } = await api.get(`/itinerary/group/${group.id}`);
+      const { data } = await api.get(`/api/itinerary/group/${group.id}`);
       setItems(data);
     } catch (e) { console.error(e); }
     finally     { setLoading(false); }
@@ -84,9 +84,11 @@ export default function ItineraryTab({ group }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      let savedItem;
+      
       if (editingId) {
         // Update existing item
-        await api.put(`/itinerary/${editingId}`, {
+        const { data } = await api.put(`/api/itinerary/${editingId}`, {
           activity  : form.activity,
           location  : form.location,
           date      : form.date,
@@ -95,9 +97,25 @@ export default function ItineraryTab({ group }) {
           latitude  : form.latitude,
           longitude : form.longitude
         });
+        savedItem = data;
+        
+        // Update corresponding location if it exists
+        if (form.latitude && form.longitude) {
+          try {
+            await api.put(`/api/locations/itinerary/${editingId}`, {
+              name      : form.activity,
+              address   : form.location,
+              latitude  : form.latitude,
+              longitude : form.longitude,
+              notes     : form.description || null
+            });
+          } catch (err) {
+            console.log('No location to update or update failed');
+          }
+        }
       } else {
         // Create new item
-        await api.post('/itinerary', {
+        const { data } = await api.post('/api/itinerary', {
           groupId   : group.id,
           activity  : form.activity,
           location  : form.location,
@@ -107,17 +125,20 @@ export default function ItineraryTab({ group }) {
           latitude  : form.latitude,
           longitude : form.longitude
         });
+        savedItem = data;
 
-        /* if coords exist, also create a Location pin for MapTab */
+        /* if coords exist, create a Location pin for MapTab */
         if (form.latitude && form.longitude) {
-          await api.post('/locations', {
-            groupId   : group.id,
-            name      : form.activity,
-            address   : form.location,
-            latitude  : form.latitude,
-            longitude : form.longitude,
-            category  : 'itinerary',
-            notes     : form.description || null
+          await api.post('/api/locations', {
+            groupId     : group.id,
+            itineraryId : savedItem.id,
+            name        : form.activity,
+            address     : form.location,
+            latitude    : form.latitude,
+            longitude   : form.longitude,
+            category    : 'itinerary',
+            notes       : form.description || null,
+            displayOrder: items.length  // Set order based on current items count
           });
         }
       }
@@ -137,7 +158,7 @@ export default function ItineraryTab({ group }) {
   const handleDelete = async (id) => {
     if (!confirm('Remove this activity?')) return;
     try {
-      await api.delete(`/itinerary/${id}`);
+      await api.delete(`/api/itinerary/${id}`);
       setItems(prev => prev.filter(i => i.id !== id));
     } catch (err) { alert(err.response?.data?.error || 'Failed to delete'); }
   };
@@ -158,37 +179,58 @@ export default function ItineraryTab({ group }) {
   };
 
   /* ── reorder ── */
-  
-  const handleMoveUp = (index) => {
+  const handleMoveUp = async (index) => {
     if (index === 0) return;
     const newItems = [...items];
     [newItems[index - 1], newItems[index]] = [newItems[index], newItems[index - 1]];
     setItems(newItems);
+    
+    // Update location order if items have locations
+    try {
+      await updateLocationOrder(newItems);
+    } catch (err) {
+      console.error('Failed to update location order:', err);
+    }
   };
 
-  const handleMoveDown = (index) => {
+  const handleMoveDown = async (index) => {
     if (index === items.length - 1) return;
     const newItems = [...items];
     [newItems[index], newItems[index + 1]] = [newItems[index + 1], newItems[index]];
     setItems(newItems);
+    
+    // Update location order if items have locations
+    try {
+      await updateLocationOrder(newItems);
+    } catch (err) {
+      console.error('Failed to update location order:', err);
+    }
   };
 
-  /*const swapArrayItems = (arr, i, j) => {
-  const newArr = [...arr];
-  [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-  return newArr;
-};
+  const updateLocationOrder = async (orderedItems) => {
+    try {
+      // Save itinerary order
+      const itemsWithOrder = orderedItems.map((item, idx) => ({
+        id: item.id,
+        displayOrder: idx
+      }));
+      await api.post(`/api/itinerary/group/${group.id}/reorder`, { items: itemsWithOrder });
 
-const handleMoveUp = (index) => {
-  if (index === 0) return;
-  setItems(swapArrayItems(items, index - 1, index));
-};
-
-const handleMoveDown = (index) => {
-  if (index === items.length - 1) return;
-  setItems(swapArrayItems(items, index, index + 1));
-};*/
-
+      // Update displayOrder for all locations linked to itinerary items
+      const locationUpdates = orderedItems
+        .filter(item => item.latitude && item.longitude)
+        .map((item, index) => 
+          api.put(`/api/locations/itinerary/${item.id}/order`, { displayOrder: index })
+            .catch(err => console.log('Location order update failed (endpoint may not exist):', err))
+        );
+      
+      if (locationUpdates.length > 0) {
+        await Promise.all(locationUpdates);
+      }
+    } catch (err) {
+      console.error('Failed to save order:', err);
+    }
+  };
 
   /* ── render ── */
   if (loading) return <div className="text-center py-8 text-gray-500">Loading itinerary…</div>;
