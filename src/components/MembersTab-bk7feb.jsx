@@ -66,8 +66,7 @@ function MembersTab({ group, currentUser, onUpdate }) {
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
-  // Check if user is admin - don't wait for members array
-  const isAdmin = group.myRole === 'admin' || group.createdBy === currentUser.id;
+  const isAdmin = group.myRole === 'admin';
 
   return (
     <div className="space-y-6">
