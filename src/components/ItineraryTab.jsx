@@ -317,7 +317,7 @@ export default function ItineraryTab({ group }) {
                           >
                             <Edit2 size={16}/>
                           </button>
-                          {/* Reorder buttons */}
+                          {/* Reorder buttons 
                           <div className="flex flex-col gap-0.5">
                             <button
                               onClick={() => handleMoveUp(dayItems.indexOf(item))}
@@ -335,7 +335,7 @@ export default function ItineraryTab({ group }) {
                             >
                               <ChevronDown size={14}/>
                             </button>
-                          </div>
+                          </div>*/}
                           {/* Delete button */}
                           <button onClick={() => handleDelete(item.id)} className="text-gray-300 hover:text-red-500">
                             <Trash2 size={17}/>

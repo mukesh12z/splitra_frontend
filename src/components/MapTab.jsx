@@ -157,6 +157,7 @@ export default function MapTab({ group }) {
     <div className="space-y-5">
 
       {/* header */}
+      {/*do this later, add location, currently the ordering is not happening..no link with itinerary. */}
      {/* <div className="flex justify-between items-center">
         <h3 className="text-xl font-bold text-gray-800">Locations Map</h3>
         <button onClick={() => { setForm(blankForm); setGeoResults([]); setShowModal(true); }}
