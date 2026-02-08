@@ -78,7 +78,7 @@ function GroupDashboard({ group, currentUser, onBack }) {
           {activeTab === 'members'   && <MembersTab    group={groupData} currentUser={currentUser} onUpdate={refreshGroupData}/>}
           {activeTab === 'itinerary' && <ItineraryTab  group={groupData} currentUser={currentUser} onUpdate={refreshGroupData}/>}
           {activeTab === 'map'       && <MapTab        group={groupData} currentUser={currentUser}/>}
-          {activeTab === 'documents' && <DocumentsTab  group={groupData} currentUser={currentUser}/>}
+          {/*{activeTab === 'documents' && <DocumentsTab  group={groupData} currentUser={currentUser}/>}*/}
           {activeTab === 'tools'     && <ToolsTab      group={groupData} currentUser={currentUser}/>}
         </div>
       </div>
