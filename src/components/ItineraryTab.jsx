@@ -130,7 +130,7 @@ export default function ItineraryTab({ group }) {
         /* if coords exist, create a Location pin for MapTab */
         if (form.latitude && form.longitude) {
           //await api.post('/locations', {
-          const locaionResponse = await api.post('/api/locations', {  
+          const locaionResponse = await api.post('/locations', {  
             groupId     : group.id,
             itineraryId : savedItem.id,
             name        : form.activity,
@@ -142,7 +142,7 @@ export default function ItineraryTab({ group }) {
             displayOrder: items.length  // Set order based on current items count
           });
            //location back to the itinerary
-          await api.put(`/api/itinerary/${savedItem.id}`, {
+          await api.put(`/itinerary/${savedItem.id}`, {
             ...savedItem,
             locationId: locationResponse.data.id
           });
