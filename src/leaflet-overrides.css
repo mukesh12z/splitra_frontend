@@ -1,0 +1,13 @@
+/* Fix Leaflet z-index to stay below modals */
+.leaflet-container {
+  z-index: 1 !important;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 10 !important;
+}
+
+.leaflet-popup-pane {
+  z-index: 100 !important;
+}

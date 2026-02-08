@@ -250,8 +250,8 @@ export default function MapTab({ group }) {
           ADD-LOCATION MODAL
           ════════════════════════════════════════════ */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4" style={{ zIndex: 9999 }}>
-          <div className="bg-white rounded-xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 relative" style={{ zIndex: 10000 }}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6">
 
             <div className="flex justify-between items-center mb-5">
               <h3 className="text-xl font-bold text-gray-800">Add Location</h3>
