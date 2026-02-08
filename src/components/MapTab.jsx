@@ -163,7 +163,7 @@ export default function MapTab({ group }) {
           className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
           <Plus size={20}/> Add Location
         </button>
-      </div>*/
+      </div>*/}
 
       {/* ── map ── */}
       <div className="rounded-lg overflow-hidden shadow-md border border-gray-200" style={{ height: '480px' }}>
