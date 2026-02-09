@@ -72,7 +72,7 @@ function MembersTab({ group, currentUser, onUpdate }) {
   return (
     <div className="space-y-6">
       {/* Invite Section */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-6">
+      {/*<div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-6">
         <h3 className="text-lg font-bold text-gray-800 mb-3">Invite Members</h3>
         <p className="text-sm text-gray-600 mb-4">
           Share this code with friends to let them join the group:
@@ -92,7 +92,7 @@ function MembersTab({ group, currentUser, onUpdate }) {
             {copiedCode ? 'Copied!' : 'Copy'}
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Add Member Button */}
       {isAdmin && (
