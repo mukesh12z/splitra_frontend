@@ -49,7 +49,7 @@ function App() {
           <div className="flex items-center gap-3">
             <Users className="text-indigo-600" size={32} />
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">TravelMate</h1>
+              <h1 className="text-2xl font-bold text-gray-800">SpliTravel</h1>
               {selectedGroup && (
                 <p className="text-sm text-gray-600">{selectedGroup.name}</p>
               )}
