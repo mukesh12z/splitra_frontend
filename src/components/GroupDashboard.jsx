@@ -16,7 +16,7 @@ function GroupDashboard({ group, currentUser, onBack }) {
     { id: 'members',   label: 'Members',   icon: Users    },
     { id: 'itinerary', label: 'Itinerary', icon: Calendar },
     { id: 'map',       label: 'Map',       icon: MapPin   },
-    { id: 'documents', label: 'Docs',      icon: FileText },
+    /*{ id: 'documents', label: 'Docs',      icon: FileText }*/,
     { id: 'tools',     label: 'Tools',     icon: Wrench   },
   ];
 

@@ -9,7 +9,7 @@ import ImportantContacts from './ImportantContacts';
 /* ── tool definitions ── */
 const TOOLS = [
   { id: 'currency',   label: 'Currency Converter',  icon: ArrowRightLeft, color: 'indigo' },
-  { id: 'ai-itinerary', label: 'AI Itinerary',     icon: Bot,            color: 'purple' },
+ /* { id: 'ai-itinerary', label: 'AI Itinerary',     icon: Bot,            color: 'purple' }*/,
   { id: 'poll',       label: 'Group Poll',          icon: Users,          color: 'blue'   },
   { id: 'phrases',    label: 'Language Phrases',    icon: BookOpen,       color: 'green'  },
   { id: 'contacts',   label: 'Important Contacts',  icon: Phone,          color: 'orange' }
@@ -82,7 +82,7 @@ export default function ToolsTab({ group, currentUser }) {
 function toolDesc(id) {
   const map = {
     'currency':     'Convert between currencies in real-time',
-    'ai-itinerary': 'Generate a smart itinerary with AI',
+    /*'ai-itinerary': 'Generate a smart itinerary with AI',*/
     'poll':         'Create & vote on group decisions',
     'phrases':      'Useful phrases in local languages',
     'contacts':     'Emergency & important contacts'
