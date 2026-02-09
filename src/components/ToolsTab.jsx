@@ -89,10 +89,11 @@ export default function ToolsTab({ group, currentUser }) {
 function toolDesc(id) {
   const map = {
     'currency':     'Convert between currencies in real-time',
-    /*'ai-itinerary': 'Generate a smart itinerary with AI',*/
     'poll':         'Create & vote on group decisions',
     'phrases':      'Useful phrases in local languages',
     'contacts':     'Emergency & important contacts'
   };
+     /*'ai-itinerary': 'Generate a smart itinerary with AI',*/
+ 
   return map[id] || '';
 }
