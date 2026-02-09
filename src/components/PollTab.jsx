@@ -16,7 +16,7 @@ export default function PollTab({ group, currentUser }) {
       fetchPolls(); 
     }
   }, [group?.id]);
-
+  
   const fetchPolls = async () => {
     try {
       if (!group?.id) return;

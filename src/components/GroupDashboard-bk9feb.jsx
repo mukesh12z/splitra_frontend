@@ -11,15 +11,6 @@ function GroupDashboard({ group, currentUser, onBack }) {
   const [activeTab,  setActiveTab]  = useState('expenses');
   const [groupData,  setGroupData]  = useState(group);
 
-  // If no group data, show loading
-  if (!groupData) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-xl text-gray-600">Loading group...</div>
-      </div>
-    );
-  }
-  
   const tabs = [
     { id: 'expenses',  label: 'Expenses',  icon: Receipt  },
     { id: 'members',   label: 'Members',   icon: Users    },
