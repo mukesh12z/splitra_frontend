@@ -12,10 +12,16 @@ export default function ImportantContacts({ group, currentUser }) {
   const blankForm = { name: '', type: 'Emergency', phone: '', address: '', notes: '' };
   const [form, setForm] = useState(blankForm);
 
-  useEffect(() => { fetchContacts(); }, [group.id]);
+  //useEffect(() => { fetchContacts(); }, [group.id]);
+  useEffect(() => { 
+    if (group?.id) {
+      fetchContacts(); 
+    }
+  }, [group?.id]);
 
   const fetchContacts = async () => {
     try {
+       if (!group?.id) return;
       /* EmergencyContact model – use groupId query param */
       const { data } = await api.get(`/contacts?groupId=${group.id}`);
       setContacts(data);
