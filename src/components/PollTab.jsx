@@ -11,24 +11,24 @@ export default function PollTab({ group, currentUser }) {
   const [form, setForm] = useState(blankForm);
 
   //useEffect(() => { fetchPolls(); }, [group.id]);
-  useEffect(() => { 
+  /*useEffect(() => { 
     if (group?.id) {
       fetchPolls(); 
     }
   }, [group?.id]);
-  
+  */
   const fetchPolls = async () => {
     try {
-      if (!group?.id) return;
+      //if (!group?.id) return;
       const { data } = await api.get(`/polls?groupId=${group.id}`);
       setPolls(data);
     } catch (e) { console.error(e); }
     finally     { setLoading(false); }
   };
-
+/*
   if (!group) {
     return <div>Loading...</div>;
-  }
+  }*/
   /* ── add / remove option inputs ── */
   const addOption   = () => setForm(p => ({ ...p, options: [...p.options, ''] }));
   const removeOption = (i) => setForm(p => ({ ...p, options: p.options.filter((_, idx) => idx !== i) }));
