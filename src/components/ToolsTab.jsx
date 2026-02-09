@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRightLeft, Bot, Users, BookOpen, Phone } from 'lucide-react';
 import CurrencyConverter from './CurrencyConverter';
-import AIItineraryGenerator from './AIItineraryGenerator';
+//import AIItineraryGenerator from './AIItineraryGenerator';
 import PollTab from './PollTab';
 import LanguagePhrases from './LanguagePhrases';
 import ImportantContacts from './ImportantContacts';
@@ -9,7 +9,7 @@ import ImportantContacts from './ImportantContacts';
 /* ── tool definitions ── */
 const TOOLS = [
   { id: 'currency',   label: 'Currency Converter',  icon: ArrowRightLeft, color: 'indigo' },
- /* { id: 'ai-itinerary', label: 'AI Itinerary',     icon: Bot,            color: 'purple' }*/,
+  {/* id: 'ai-itinerary', label: 'AI Itinerary',     icon: Bot,            color: 'purple' */},
   { id: 'poll',       label: 'Group Poll',          icon: Users,          color: 'blue'   },
   { id: 'phrases',    label: 'Language Phrases',    icon: BookOpen,       color: 'green'  },
   { id: 'contacts',   label: 'Important Contacts',  icon: Phone,          color: 'orange' }
@@ -28,7 +28,14 @@ export default function ToolsTab({ group, currentUser }) {
 
   /* ── if a tool is open, render it full-width ── */
   if (activeTool) {
-    const tool = TOOLS.find(t => t.id === activeTool);
+    const tool = TOOLS.find(t => t && t.id === activeTool);
+    
+    if (!tool) {
+      // Invalid tool selected, reset
+      setActiveTool(null);
+      return null;
+    }
+    
     return (
       <div className="space-y-4">
         {/* back bar */}
@@ -36,13 +43,13 @@ export default function ToolsTab({ group, currentUser }) {
           className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 text-sm font-semibold">
           ← Back to Tools
         </button>
-        <h3 className="text-xl font-bold text-gray-800">{tool?.label}</h3>
+        <h3 className="text-xl font-bold text-gray-800">{tool.label}</h3>
         <hr className="border-gray-200"/>
 
         {activeTool === 'currency'      && <CurrencyConverter />}
         {/*activeTool === 'ai-itinerary'  && <AIItineraryGenerator group={group} />*/}
         {activeTool === 'poll'          && <PollTab group={group} currentUser={currentUser} />}
-        {activeTool === 'phrases'       && <LanguagePhrases group={group} />}
+        {activeTool === 'phrases'       && <LanguagePhrases />}
         {activeTool === 'contacts'      && <ImportantContacts group={group} currentUser={currentUser} />}
       </div>
     );
