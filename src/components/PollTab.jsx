@@ -10,7 +10,7 @@ export default function PollTab({ group, currentUser }) {
   const blankForm = { question: '', options: ['', ''] };
   const [form, setForm] = useState(blankForm);
 
-  //useEffect(() => { fetchPolls(); }, [group.id]);
+  useEffect(() => { fetchPolls(); }, [group.id]);
   /*useEffect(() => { 
     if (group?.id) {
       fetchPolls(); 
