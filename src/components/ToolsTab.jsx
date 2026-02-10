@@ -28,7 +28,12 @@ export default function ToolsTab({ group, currentUser }) {
 
   /* ── if a tool is open, render it full-width ── */
   if (activeTool) {
-    const tool = TOOLS.find(t => t.id === activeTool);
+    //const tool = TOOLS.find(t => t.id === activeTool);
+    const tool = TOOLS.find(t => t && t.id === activeTool);  // ✅ Check t exists
+    if (!tool) {
+      setActiveTool(null);  // ✅ Reset if invalid
+      return null;
+    }
     return (
       <div className="space-y-4">
         {/* back bar */}
@@ -36,14 +41,19 @@ export default function ToolsTab({ group, currentUser }) {
           className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 text-sm font-semibold">
           ← Back to Tools
         </button>
-        <h3 className="text-xl font-bold text-gray-800">{tool?.label}</h3>
+        <h3 className="text-xl font-bold text-gray-800">{tool.label}</h3>
         <hr className="border-gray-200"/>
 
         {activeTool === 'currency'      && <CurrencyConverter />}
         {/*activeTool === 'ai-itinerary'  && <AIItineraryGenerator group={group} />*/}
-        {activeTool === 'poll'          && <PollTab group={group} currentUser={currentUser} />}
-        {activeTool === 'phrases'       && <LanguagePhrases group={group} />}
-        {activeTool === 'contacts'      && <ImportantContacts group={group} currentUser={currentUser} />}
+        {/*activeTool === 'poll'          && <PollTab group={group} currentUser={currentUser} />*/}
+        {/*activeTool === 'phrases'       && <LanguagePhrases group={group} />*/}
+        {/*activeTool === 'contacts'      && <ImportantContacts group={group} currentUser={currentUser} />*/}
+         
+        {activeTool === 'poll'          && <PollTab />}
+        {activeTool === 'phrases'       && <LanguagePhrases />}
+        {activeTool === 'contacts'      && <ImportantContacts />}
+      
       </div>
     );
   }
