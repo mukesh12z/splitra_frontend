@@ -46,13 +46,13 @@ export default function ToolsTab({ group, currentUser }) {
 
         {activeTool === 'currency'      && <CurrencyConverter />}
         {/*activeTool === 'ai-itinerary'  && <AIItineraryGenerator group={group} />*/}
-        {/*activeTool === 'poll'          && <PollTab group={group} currentUser={currentUser} />*/}
-        {/*activeTool === 'phrases'       && <LanguagePhrases group={group} />*/}
-        {/*activeTool === 'contacts'      && <ImportantContacts group={group} currentUser={currentUser} />*/}
+        {activeTool === 'poll'          && <PollTab group={group} currentUser={currentUser} />}
+        {activeTool === 'phrases'       && <LanguagePhrases group={group} />}
+        {activeTool === 'contacts'      && <ImportantContacts group={group} currentUser={currentUser} />}
          
-        {activeTool === 'poll'          && <PollTab />}
-        {activeTool === 'phrases'       && <LanguagePhrases />}
-        {activeTool === 'contacts'      && <ImportantContacts />}
+        {/*activeTool === 'poll'          && <PollTab />*/}
+        {/*activeTool === 'phrases'       && <LanguagePhrases />*/}
+        {/*activeTool === 'contacts'      && <ImportantContacts />*/}
       
       </div>
     );
