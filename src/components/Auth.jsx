@@ -8,6 +8,7 @@ function Auth({ onLogin }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
