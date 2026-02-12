@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Lock, User, Phone } from 'lucide-react';
+import { MapPin, Mail, Lock, User, Phone, AlertCircle } from 'lucide-react';
 
 function Auth({ onLogin }) {
   const [isLogin, setIsLogin] = useState(true);
