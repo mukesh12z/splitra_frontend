@@ -3,12 +3,15 @@ import Auth from './components/Auth';
 import GroupsList from './components/GroupsList';
 import GroupDashboard from './components/GroupDashboard';
 import { Users, LogOut } from 'lucide-react';
+import { Settings } from 'lucide-react';
+import UserSettings from './components/UserSettings';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState(null);
-
+  const [showSettings, setShowSettings] = useState(false);
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
@@ -59,6 +62,13 @@ function App() {
             <span className="text-sm text-gray-600">
               Welcome, {currentUser?.name || currentUser?.email}
             </span>
+             <button
+              onClick={() => setShowSettings(true)}
+              className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+            >
+              <Settings size={20} />
+              Settings
+            </button>
             <button
               onClick={handleLogout}
               className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
@@ -75,6 +85,12 @@ function App() {
         <GroupsList 
           currentUser={currentUser} 
           onSelectGroup={setSelectedGroup}
+        />
+      ) : showSettings ? (
+        <UserSettings 
+          currentUser={currentUser}
+          onLogout={handleLogout}
+          onUpdateUser={(user) => setCurrentUser(user)}
         />
       ) : (
         <GroupDashboard 
