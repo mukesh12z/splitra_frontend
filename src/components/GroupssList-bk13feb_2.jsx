@@ -1,41 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Plus, Users, Calendar, MapPin, X } from 'lucide-react';
 import api from '../services/api';
+import CurrencySelector from './CurrencySelector';
+const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
+const currencyDropdownRef = useRef(null);
+const [deleteLoading, setDeleteLoading] = useState(false);
+
 
 function GroupsList({ currentUser, onSelectGroup }) {
-  // ALL useState must be INSIDE the component ✅
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
-  const currencyDropdownRef = useRef(null);
-  
   const [createForm, setCreateForm] = useState({
     name: '',
     description: '',
     startDate: '',
     endDate: '',
-    currency: 'USD'
+    currency: 'USD'  // ADD THIS LINE
   });
 
   useEffect(() => {
     fetchGroups();
   }, []);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (currencyDropdownRef.current && !currencyDropdownRef.current.contains(event.target)) {
-        setShowCurrencyDropdown(false);
-      }
-    };
-
-    if (showCurrencyDropdown) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+// Close dropdown when clicking outside
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (currencyDropdownRef.current && !currencyDropdownRef.current.contains(event.target)) {
+      setShowCurrencyDropdown(false);
     }
-  }, [showCurrencyDropdown]);
+  };
+
+  if (showCurrencyDropdown) {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }
+}, [showCurrencyDropdown]);
 
   const fetchGroups = async () => {
     try {
@@ -55,15 +55,17 @@ function GroupsList({ currentUser, onSelectGroup }) {
       const response = await api.post('/groups', createForm);
       setGroups([response.data, ...groups]);
       setShowCreateModal(false);
-      setCreateForm({ name: '', description: '', startDate: '', endDate: '', currency: 'USD' });
+      setCreateForm({ name: '', description: '', startDate: '', endDate: '' });
     } catch (error) {
       console.error('Error creating group:', error);
       alert('Failed to create group');
     }
   };
 
+
+  // Add delete handler
   const handleDeleteGroup = async (groupId, groupName, e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Prevent card click
     
     if (!confirm(`Delete "${groupName}"? This cannot be undone!`)) {
       return;
@@ -71,7 +73,7 @@ function GroupsList({ currentUser, onSelectGroup }) {
 
     setDeleteLoading(true);
     try {
-      await api.delete(`/groups/${groupId}`);
+      await api.delete(`/api/groups/${groupId}`);
       setGroups(groups.filter(g => g.id !== groupId));
       alert('Group deleted successfully');
     } catch (error) {
@@ -143,23 +145,21 @@ function GroupsList({ currentUser, onSelectGroup }) {
                     </p>
                   )}
                 </div>
-                <div className="flex items-center gap-2">
-                  {group.myRole === 'admin' && (
-                    <>
-                      <span className="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full font-semibold">
-                        Admin
-                      </span>
-                      <button
-                        onClick={(e) => handleDeleteGroup(group.id, group.name, e)}
-                        disabled={deleteLoading}
-                        className="p-1 text-red-500 hover:bg-red-50 rounded disabled:opacity-50"
-                        title="Delete Group"
-                      >
-                        <X size={18} />
-                      </button>
-                    </>
-                  )}
-                </div>
+                {group.myRole === 'admin' && (
+                  <>
+                    <span className="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full font-semibold">
+                      Admin
+                    </span>
+                    <button
+                      onClick={(e) => handleDeleteGroup(group.id, group.name, e)}
+                      disabled={deleteLoading}
+                      className="p-1 text-red-500 hover:bg-red-50 rounded disabled:opacity-50"
+                      title="Delete Group"
+                    >
+                      <X size={18} />
+                    </button>
+                  </>
+                )}
               </div>
 
               <div className="space-y-2 text-sm text-gray-600">
@@ -313,12 +313,14 @@ function GroupsList({ currentUser, onSelectGroup }) {
                 >
                   Cancel
                 </button>
+                 {/*<CurrencySelector />   ← Add this */}
                 <button
                   type="submit"
                   className="flex-1 px-4 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700"
                 >
                   Create Group
                 </button>
+                
               </div>
             </form>
           </div>
