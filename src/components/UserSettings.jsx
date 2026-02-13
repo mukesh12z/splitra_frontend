@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { User, Mail, Phone, Lock, Trash2, Save, X, AlertTriangle , onBack} from 'lucide-react';
+import { User, Mail, Phone, Lock, Trash2, Save, X, AlertTriangle } from 'lucide-react';
 import api from '../services/api';
 
-function UserSettings({ currentUser, onLogout, onUpdateUser }) {
+function UserSettings({ currentUser, onLogout, onUpdateUser, onBack }) {
   const [activeTab, setActiveTab] = useState('profile');
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
