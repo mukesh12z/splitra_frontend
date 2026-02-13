@@ -84,18 +84,18 @@ function App() {
     {selectedGroup ? (
         <GroupDashboard 
           group={selectedGroup} 
-          abc={abc}
+          currentUser={currentUser}
           onBack={handleBackToGroups}
         />
       ) : showSettings ? (
         <UserSettings 
-          abc={abc}
+          currentUser={currentUser}
           onLogout={handleLogout}
-          onUpdateUser={(user) => setabc(user)}
+          onUpdateUser={(user) => setcurrentUser(user)}
         />
       ) : (
         <GroupsList 
-          abc={abc} 
+          currentUser={currentUser} 
           onSelectGroup={setSelectedGroup}
         />
       )}
