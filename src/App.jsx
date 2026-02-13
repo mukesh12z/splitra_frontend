@@ -81,22 +81,22 @@ function App() {
       </header>
 
       {/* Main Content */}
-      {!selectedGroup ? (
-        <GroupsList 
-          currentUser={currentUser} 
-          onSelectGroup={setSelectedGroup}
+    {selectedGroup ? (
+        <GroupDashboard 
+          group={selectedGroup} 
+          abc={abc}
+          onBack={handleBackToGroups}
         />
       ) : showSettings ? (
         <UserSettings 
-          currentUser={currentUser}
+          abc={abc}
           onLogout={handleLogout}
-          onUpdateUser={(user) => setCurrentUser(user)}
+          onUpdateUser={(user) => setabc(user)}
         />
       ) : (
-        <GroupDashboard 
-          group={selectedGroup} 
-          currentUser={currentUser}
-          onBack={handleBackToGroups}
+        <GroupsList 
+          abc={abc} 
+          onSelectGroup={setSelectedGroup}
         />
       )}
     </div>
