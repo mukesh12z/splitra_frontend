@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Receipt, Calendar, MapPin, Users, FileText, Wrench, MoreVertical } from 'lucide-react';
+import { ArrowLeft, Receipt, Calendar, MapPin, Users, FileText, Wrench, MoreVertical, MoreHorizontal } from 'lucide-react';
 import ExpensesTab    from './ExpensesTab';
 import ItineraryTab   from './ItineraryTab';
 import MapTab         from './MapTab';
@@ -119,7 +119,7 @@ function NavButton({ icon: Icon, label, active, onClick }) {
 function MoreTab({ group, currentUser }) {
   return (
     <div className="p-4 space-y-3">
-      <MoreItem icon={FileText} label="Documents" onClick={() => {/* Navigate */}} />
+      {/*<MoreItem icon={FileText} label="Documents" onClick={() => {/* Navigate */} />
       <MoreItem icon={Wrench} label="Tools" onClick={() => {/* Navigate */}} />
       <MoreItem icon={Settings} label="Group Settings" onClick={() => {/* Navigate */}} />
       <MoreItem icon={LogOut} label="Leave Group" danger onClick={() => {/* Leave */}} />
