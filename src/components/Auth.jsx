@@ -167,9 +167,9 @@ const validators = {
         <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white">
           <div className="flex items-center justify-center gap-3 mb-2">
             <MapPin size={40} />
-            <h1 className="text-3xl font-bold">TravelMate</h1>
+            <h1 className="text-3xl font-bold">SpliTravel</h1>
           </div>
-          <p className="text-center text-blue-100">Your complete travel companion</p>
+          <p className="text-center text-blue-100">Travel Made Simple</p>
         </div>
 
         {/* Form */}
