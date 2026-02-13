@@ -106,6 +106,13 @@ function UserSettings({ currentUser, onLogout, onUpdateUser }) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
+      <button
+        onClick={onBack}  // Use the prop
+        className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 mb-4 font-semibold"
+        >
+        <ArrowLeft size={20} />
+        Back to Groups
+      </button>
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-gray-800">Account Settings</h2>
         <p className="text-gray-600 mt-1">Manage your profile and account preferences</p>
