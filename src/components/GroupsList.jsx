@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Plus, Users, Calendar, MapPin, X } from 'lucide-react';
 import api from '../services/api';
 import CurrencySelector from './CurrencySelector';
-import { useRef } from 'react'; // Add to existing imports
 const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
 const currencyDropdownRef = useRef(null);
+const [deleteLoading, setDeleteLoading] = useState(false);
 
 
 function GroupsList({ currentUser, onSelectGroup }) {
@@ -59,6 +59,28 @@ useEffect(() => {
     } catch (error) {
       console.error('Error creating group:', error);
       alert('Failed to create group');
+    }
+  };
+
+
+  // Add delete handler
+  const handleDeleteGroup = async (groupId, groupName, e) => {
+    e.stopPropagation(); // Prevent card click
+    
+    if (!confirm(`Delete "${groupName}"? This cannot be undone!`)) {
+      return;
+    }
+
+    setDeleteLoading(true);
+    try {
+      await api.delete(`/api/groups/${groupId}`);
+      setGroups(groups.filter(g => g.id !== groupId));
+      alert('Group deleted successfully');
+    } catch (error) {
+      console.error('Delete error:', error);
+      alert(error.response?.data?.error || 'Failed to delete group');
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -124,9 +146,19 @@ useEffect(() => {
                   )}
                 </div>
                 {group.myRole === 'admin' && (
-                  <span className="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full font-semibold">
-                    Admin
-                  </span>
+                  <>
+                    <span className="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full font-semibold">
+                      Admin
+                    </span>
+                    <button
+                      onClick={(e) => handleDeleteGroup(group.id, group.name, e)}
+                      disabled={deleteLoading}
+                      className="p-1 text-red-500 hover:bg-red-50 rounded disabled:opacity-50"
+                      title="Delete Group"
+                    >
+                      <X size={18} />
+                    </button>
+                  </>
                 )}
               </div>
 
