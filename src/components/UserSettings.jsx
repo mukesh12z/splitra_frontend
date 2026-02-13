@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Mail, Phone, Lock, Trash2, Save, X, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, User, Mail, Phone, Lock, Trash2, Save, X, AlertTriangle } from 'lucide-react';
 import api from '../services/api';
 
 function UserSettings({ currentUser, onLogout, onUpdateUser, onBack }) {
