@@ -91,7 +91,9 @@ function App() {
         <UserSettings 
           currentUser={currentUser}
           onLogout={handleLogout}
-          onUpdateUser={(user) => setcurrentUser(user)}
+          onUpdateUser={(user) => setCurrentUser(user)}
+          onBack={() => setShowSettings(false)}  
+          
         />
       ) : (
         <GroupsList 
