@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Receipt, Calendar, MapPin, Users, FileText, Wrench, MoreVertical, MoreHorizontal, Settings } from 'lucide-react';
+import { ArrowLeft, Receipt, Calendar, MapPin, Users, FileText, Wrench, MoreVertical, MoreHorizontal, Settings, LogOut } from 'lucide-react';
 import ExpensesTab    from './ExpensesTab';
 import ItineraryTab   from './ItineraryTab';
 import MapTab         from './MapTab';
