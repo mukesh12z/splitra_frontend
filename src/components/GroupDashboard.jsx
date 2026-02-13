@@ -55,7 +55,7 @@ function GroupDashboard({ group, currentUser, onBack }) {
         {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'map' && <MapTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'members' && <MembersTab group={groupData} currentUser={currentUser} />}
-        {activeTab === 'more' && <MoreTab group={groupData} currentUser={currentUser} />}
+        {activeTab === 'tools' && <ToolsTab group={groupData} currentUser={currentUser} />}
       </div>
 
       {/* Bottom Navigation - Fixed */}
