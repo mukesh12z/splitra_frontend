@@ -116,4 +116,30 @@ function NavButton({ icon: Icon, label, active, onClick }) {
   );
 }
 
+function MoreTab({ group, currentUser }) {
+  return (
+    <div className="p-4 space-y-3">
+      <MoreItem icon={FileText} label="Documents" onClick={() => {/* Navigate */}} />
+      <MoreItem icon={Wrench} label="Tools" onClick={() => {/* Navigate */}} />
+      <MoreItem icon={Settings} label="Group Settings" onClick={() => {/* Navigate */}} />
+      <MoreItem icon={LogOut} label="Leave Group" danger onClick={() => {/* Leave */}} />
+    </div>
+  );
+}
+
+function MoreItem({ icon: Icon, label, onClick, danger }) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-full flex items-center gap-4 p-4 bg-white rounded-lg hover:bg-gray-50"
+    >
+      <Icon size={24} className={danger ? 'text-red-500' : 'text-gray-600'} />
+      <span className={`font-medium ${danger ? 'text-red-500' : 'text-gray-800'}`}>
+        {label}
+      </span>
+      <ChevronRight size={20} className="ml-auto text-gray-400" />
+    </button>
+  );
+}
+
 export default GroupDashboard;
