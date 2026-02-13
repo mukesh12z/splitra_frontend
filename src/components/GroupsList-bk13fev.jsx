@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Users, Calendar, MapPin, X } from 'lucide-react';
 import api from '../services/api';
 import CurrencySelector from './CurrencySelector';
-import { useRef } from 'react'; // Add to existing imports
-const [showCurrencyDropdown, setShowCurrencyDropdown] = useState(false);
-const currencyDropdownRef = useRef(null);
 
 
 function GroupsList({ currentUser, onSelectGroup }) {
@@ -15,27 +12,12 @@ function GroupsList({ currentUser, onSelectGroup }) {
     name: '',
     description: '',
     startDate: '',
-    endDate: '',
-    currency: 'USD'  // ADD THIS LINE
+    endDate: ''
   });
 
   useEffect(() => {
     fetchGroups();
   }, []);
-
-// Close dropdown when clicking outside
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (currencyDropdownRef.current && !currencyDropdownRef.current.contains(event.target)) {
-      setShowCurrencyDropdown(false);
-    }
-  };
-
-  if (showCurrencyDropdown) {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }
-}, [showCurrencyDropdown]);
 
   const fetchGroups = async () => {
     try {
@@ -200,51 +182,6 @@ useEffect(() => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 />
               </div>
-              
-              {/* Currency Selector */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Currency
-                </label>
-                <div className="relative" ref={currencyDropdownRef}>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowCurrencyDropdown(!showCurrencyDropdown);
-                    }}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-left flex justify-between items-center"
-                  >
-                    <span>{createForm.currency}</span>
-                    <span>▼</span>
-                  </button>
-
-                  {showCurrencyDropdown && (
-                    <div 
-                      className="absolute z-50 w-full mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-y-auto"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {['USD', 'EUR', 'GBP', 'INR', 'JPY', 'AUD', 'CAD'].map((curr) => (
-                        <button
-                          key={curr}
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setCreateForm({ ...createForm, currency: curr });
-                            setShowCurrencyDropdown(false);
-                          }}
-                          className={`w-full px-4 py-2 text-left hover:bg-indigo-50 ${
-                            createForm.currency === curr ? 'bg-indigo-100' : ''
-                          }`}
-                        >
-                          {curr}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -281,7 +218,7 @@ useEffect(() => {
                 >
                   Cancel
                 </button>
-                 {/*<CurrencySelector />   ← Add this */}
+                 <CurrencySelector />  {/* ← Add this */}
                 <button
                   type="submit"
                   className="flex-1 px-4 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700"
