@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account & Data Deletion Request</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            max-width: 600px; 
+            margin: 40px auto; 
+            padding: 20px; 
+            line-height: 1.6;
+            color: #333;
+        }
+        .container { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h1 { color: #dc3545; margin-bottom: 10px; font-size: 28px; }
+        .subtitle { color: #666; margin-bottom: 30px; font-size: 16px; }
+        label { 
+            display: block; margin: 20px 0 8px; 
+            font-weight: 600; color: #444; 
+            font-size: 14px;
+        }
+        input, textarea { 
+            width: 100%; padding: 14px; 
+            border: 2px solid #e1e5e9; 
+            border-radius: 8px; 
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus { 
+            outline: none; 
+            border-color: #dc3545; 
+            box-shadow: 0 0 0 3px rgba(220,53,69,0.1);
+        }
+        textarea { resize: vertical; min-height: 100px; }
+        button { 
+            background: #dc3545; 
+            color: white; 
+            padding: 16px 32px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 600;
+            width: 100%;
+            margin-top: 24px;
+            transition: background 0.2s;
+        }
+        button:hover { background: #c82333; }
+        button:disabled { background: #6c757d; cursor: not-allowed; }
+        .note { 
+            background: #fff3cd; 
+            border: 1px solid #ffeaa7; 
+            padding: 16px; 
+            border-radius: 8px; 
+            margin: 24px 0;
+        }
+        .success { background: #d4edda; border-color: #c3e6cb; color: #155724; }
+        .footer { 
+            text-align: center; 
+            margin-top: 30px; 
+            padding-top: 20px; 
+            border-top: 1px solid #eee;
+            font-size: 14px; 
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗑️ Data & Account Deletion</h1>
+        <p class="subtitle">Request deletion of your account and all associated data per our Privacy Policy. We'll verify your identity and process within 30 days.</p>
+        
+        <div class="note">
+            <strong>✅ No passwords required</strong><br>
+            We verify using your registered email + confirmation link. You'll receive an email to confirm this request belongs to you.
+        </div>
+
+        <form id="deletionForm" action="https://formsubmit.co/eternalfusiola@gmail.com" method="POST">
+            
+            
+            <label for="username">
+                📱 App Username <span style="color: #dc3545;">*</span>
+            </label>
+            <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                placeholder="Enter your exact app username" 
+                required 
+                maxlength="50"
+            >
+
+            <label for="email">
+                ✉️ Registered Email <span style="color: #dc3545;">*</span>
+            </label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="your@email.com" 
+                required
+            >
+
+            <label for="reason">
+                ❓ Reason for deletion (optional)
+            </label>
+            <textarea 
+                id="reason" 
+                name="reason" 
+                placeholder="No longer using the app, privacy concerns, right to be forgotten, etc..."
+                maxlength="500"
+            ></textarea>
+
+            <label style="font-size: 14px;">
+                <input type="checkbox" name="confirm" required style="width: auto; margin-right: 8px;">
+                <strong>I confirm:</strong> This is my account. I understand all data will be permanently deleted and cannot be recovered.
+            </label>
+
+            <button type="submit" id="submitBtn">
+                🚀 Send Deletion Request
+            </button>
+        </form>
+
+        <div class="footer">
+            <p><strong>What happens next?</strong></p>
+            <p>1. We verify your email matches our records<br>
+               2. You receive a confirmation link<br>
+               3. Click to finalize → Account deleted<br>
+               <small>Emails sent to: <code>your-support-email@domain.com</code></small>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Basic form validation + loading state
+        document.getElementById('deletionForm').addEventListener('submit', function(e) {
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+        });
+    </script>
+</body>
+</html>

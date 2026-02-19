@@ -5,6 +5,7 @@ import GroupDashboard from './components/GroupDashboard';
 import { Users, LogOut } from 'lucide-react';
 import { Settings } from 'lucide-react';
 import UserSettings from './components/UserSettings';
+import DeleteAccount from './pages/DeleteAccount';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -43,6 +44,7 @@ function App() {
   if (!isAuthenticated) {
     return <Auth onLogin={handleLogin} />;
   }
+ {window.location.pathname === '/delete-account' && <DeleteAccount />}
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
