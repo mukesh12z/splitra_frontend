@@ -15,7 +15,7 @@ function DeleteAccount() {
 
     try {
       // ✅ THIS TRIGGERS THE EMAIL
-      await api.post('/api/auth/request-deletion', { email });
+      await api.post('/auth/request-deletion', { email });
       setSubmitted(true);
     } catch (err) {
       console.error('Deletion request error:', err);
