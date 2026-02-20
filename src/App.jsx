@@ -23,6 +23,13 @@ function App() {
     }
   }, []);
 
+  const path = window.location.pathname;
+  
+  // Public routes (no login required)
+  if (path === '/delete-account') {
+    return <DeleteAccount />;
+  }
+  
   const handleLogin = (user, token) => {
     setIsAuthenticated(true);
     setCurrentUser(user);
@@ -44,8 +51,7 @@ function App() {
   if (!isAuthenticated) {
     return <Auth onLogin={handleLogin} />;
   }
- {window.location.pathname === '/delete-account' && <DeleteAccount />}
-
+ 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
