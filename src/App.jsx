@@ -6,6 +6,9 @@ import { Users, LogOut } from 'lucide-react';
 import { Settings } from 'lucide-react';
 import UserSettings from './components/UserSettings';
 import DeleteAccount from './pages/DeleteAccount';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Capacitor } from '@capacitor/core';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -20,6 +23,14 @@ function App() {
     if (token && user) {
       setIsAuthenticated(true);
       setCurrentUser(JSON.parse(user));
+    }
+  }, []);
+  
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      StatusBar.setStyle({ style: Style.Light });
+      StatusBar.setBackgroundColor({ color: '#4F46E5' });
+      StatusBar.setOverlaysWebView({ overlay: false });
     }
   }, []);
 
