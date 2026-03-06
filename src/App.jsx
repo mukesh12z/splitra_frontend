@@ -9,6 +9,8 @@ import DeleteAccount from './pages/DeleteAccount';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Capacitor } from '@capacitor/core';
 
+import { Menu } from 'lucide-react';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
