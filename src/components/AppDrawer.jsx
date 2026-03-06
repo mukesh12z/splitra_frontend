@@ -1,9 +1,41 @@
 import React from 'react';
 import { X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
+import { Users, LogOut } from 'lucide-react';
+import { Settings } from 'lucide-react';
+import UserSettings from './components/UserSettings';
+import DeleteAccount from './pages/DeleteAccount';
 
 function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
   if (!isOpen) return null;
+ useEffect(() => {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    
+    if (token && user) {
+      setIsAuthenticated(true);
+      setCurrentUser(JSON.parse(user));
+    }
+  }, []);
 
+  const path = window.location.pathname;
+  
+  // Public routes (no login required)
+  if (path === '/delete-account') {
+    return <DeleteAccount />;
+  }
+  
+  const handleLogin = (user, token) => {
+    setIsAuthenticated(true);
+    setCurrentUser(user);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setIsAuthenticated(false);
+    setCurrentUser(null);
+    setSelectedGroup(null);
+  };
   return (
     <>
       {/* Overlay */}
@@ -37,7 +69,7 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
             icon={Settings} 
             label="Settings" 
             onClick={() => {
-              onOpenSettings();
+              setShowSettings(true);
               onClose();
             }}
           />
@@ -74,7 +106,7 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
           <MenuItem 
             icon={LogOut} 
             label="Logout" 
-            onClick={onLogout}
+            onClick={handleLogout}
             danger
           />
         </div>
