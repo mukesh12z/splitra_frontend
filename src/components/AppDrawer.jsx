@@ -1,7 +1,6 @@
 import React from 'react';
 import { X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
 import { Users, LogOut } from 'lucide-react';
-import { Settings } from 'lucide-react';
 import UserSettings from './components/UserSettings';
 import DeleteAccount from './pages/DeleteAccount';
 
@@ -11,6 +10,8 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     
+    const [showSettings, setShowSettings] = useState(false);
+
     if (token && user) {
       setIsAuthenticated(true);
       setCurrentUser(JSON.parse(user));
