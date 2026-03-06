@@ -97,9 +97,7 @@ function App(onLogout ) {
           
         </div>
       </header>
-
-    </div>
-      {/* Main Content */}
+{/* Main Content */}
     {selectedGroup ? (
         <GroupDashboard 
           group={selectedGroup} 
@@ -121,6 +119,8 @@ function App(onLogout ) {
         />
       )}
     
+    </div>
+      
     </>
   );
 }
