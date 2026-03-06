@@ -9,7 +9,7 @@ import ToolsTab       from './ToolsTab';
 
 //import AppDrawer from './AppDrawer';
 
-function GroupDashboard({ group, currentUser, onBack, onLogout }) {
+function GroupDashboard({ group, currentUser, onBack}) {
   const [activeTab,  setActiveTab]  = useState('expenses');
   const [groupData,  setGroupData]  = useState(group);
 
@@ -38,7 +38,7 @@ function GroupDashboard({ group, currentUser, onBack, onLogout }) {
 
    return (
     
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-screen bg-gray-50" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))' }}>
       {/* Top Header - Fixed */}
       <div className="bg-white shadow-sm p-4 flex items-center gap-3">
         <button onClick={onBack} className="text-indigo-600">
@@ -54,7 +54,7 @@ function GroupDashboard({ group, currentUser, onBack, onLogout }) {
       </div>
 
       {/* Content Area - Scrollable */}
-      <div className="flex-1 overflow-y-auto pb-20"  style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom))' }}>
+      <div className="flex-1 overflow-y-auto pb-20"   style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))'  }}>
         {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'map' && <MapTab group={groupData} currentUser={currentUser} />}
@@ -63,7 +63,7 @@ function GroupDashboard({ group, currentUser, onBack, onLogout }) {
       </div>
 
       {/* Bottom Navigation - Fixed */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-pb overflow-hidden"  >
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-pb overflow-hidden" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom))' }}  >
         <div className="flex justify-around items-center h-16" >
           <NavButton
             icon={Receipt}
