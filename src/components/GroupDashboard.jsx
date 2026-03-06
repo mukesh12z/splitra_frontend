@@ -9,7 +9,7 @@ import ToolsTab       from './ToolsTab';
 import AppDrawer from './AppDrawer';
 import { Menu } from 'lucide-react';
 
-function GroupDashboard({ group, currentUser, onBack }) {
+function GroupDashboard({ group, currentUser, onBack, onLogout }) {
   const [activeTab,  setActiveTab]  = useState('expenses');
   const [groupData,  setGroupData]  = useState(group);
   const [drawerOpen, setDrawerOpen] = useState(false);
