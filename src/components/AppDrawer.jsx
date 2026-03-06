@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
-import UserSettings from './components/UserSettings';
+import UserSettings from './UserSettings';
 import DeleteAccount from './pages/DeleteAccount';
 
 function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
