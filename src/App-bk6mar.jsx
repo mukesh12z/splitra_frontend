@@ -72,15 +72,30 @@ function App() {
             <Users className="text-indigo-600" size={32} />
             <div>
               <h1 className="text-2xl font-bold text-gray-800">SpliTravel</h1>
-               <button onClick={() => setDrawerOpen(true)} className="p-2">
-                  <Menu size={24} />
-                </button>
               {selectedGroup && (
                 <p className="text-sm text-gray-600">{selectedGroup.name}</p>
               )}
             </div>
           </div>
-          
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-600">
+              Welcome, {currentUser?.name || currentUser?.email}
+            </span>
+             <button
+              onClick={() => setShowSettings(true)}
+              className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+            >
+              <Settings size={20} />
+              Settings
+            </button>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+            >
+              <LogOut size={18} />
+              Logout
+            </button>
+          </div>
         </div>
       </header>
 
