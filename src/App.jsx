@@ -81,12 +81,12 @@ function App(onLogout ) {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
       <header className="bg-white shadow-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}>
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center" style={{ paddingTop: 'max(.75rem, env(safe-area-inset-top, 0px))' }}>
           <div className="flex items-center gap-3">
-            <Users className="text-indigo-600" size={32} />
+            <Users className="text-indigo-600" size={24} />
             <div>
               <h1 className="text-2xl font-bold text-gray-800">SpliTravel</h1>
-               <button onClick={() => setDrawerOpen(true)} className="p-2">
+               <button onClick={() => setDrawerOpen(true)} className="p-2 hover:bg-gray-100 rounded-lg">
                   <Menu size={24} />
                 </button>
               {selectedGroup && (

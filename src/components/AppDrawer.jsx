@@ -69,7 +69,7 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
           {/* About - Disabled for now */}
           <MenuItem 
             icon={Info} 
-            label="About TravelMate" 
+            label="About SpliTravel" 
             onClick={() => alert('Coming soon!')}
             disabled
           />
