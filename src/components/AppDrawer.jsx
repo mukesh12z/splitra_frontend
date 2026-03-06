@@ -1,7 +1,6 @@
 import React from 'react';
 import { Users, X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
 import UserSettings from './UserSettings';
-import DeleteAccount from './pages/DeleteAccount';
 
 function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
   if (!isOpen) return null;
@@ -19,10 +18,6 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
 
   const path = window.location.pathname;
   
-  // Public routes (no login required)
-  if (path === '/delete-account') {
-    return <DeleteAccount />;
-  }
   
   const handleLogin = (user, token) => {
     setIsAuthenticated(true);
