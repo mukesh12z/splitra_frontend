@@ -87,7 +87,7 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
 
         {/* Footer */}
         <div className="absolute bottom-0 left-0 right-0 p-4 text-center text-xs text-gray-500 border-t">
-          TravelMate v1.0.0
+          SpliTravel v1.0.0
         </div>
       </div>
     </>
