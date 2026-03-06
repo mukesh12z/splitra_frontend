@@ -38,7 +38,7 @@ function GroupDashboard({ group, currentUser, onBack}) {
 
    return (
     
-    <div className="flex flex-col h-screen bg-gray-50" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))' }}>
+    <div className="flex flex-col h-screen bg-gray-50" style={{ paddingTop: 'max(0.5rem, env(safe-area-inset-top, 0px))' }}>
       {/* Top Header - Fixed */}
       <div className="bg-white shadow-sm p-4 flex items-center gap-3">
         <button onClick={onBack} className="text-indigo-600">
@@ -54,7 +54,9 @@ function GroupDashboard({ group, currentUser, onBack}) {
       </div>
 
       {/* Content Area - Scrollable */}
-      <div className="flex-1 overflow-y-auto pb-20"   style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))'  }}>
+      <div className="flex-1 overflow-y-auto pb-20"   style={{ 
+    paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom, 0px)))' // ✅ Match nav height
+  }}>
         {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'map' && <MapTab group={groupData} currentUser={currentUser} />}
@@ -63,8 +65,8 @@ function GroupDashboard({ group, currentUser, onBack}) {
       </div>
 
       {/* Bottom Navigation - Fixed */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-pb overflow-hidden" style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom))' }}  >
-        <div className="flex justify-around items-center h-16" >
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-pb overflow-hidden" style={{ paddingBottom: 'max(0.5rem + env(safe-area-inset-bottom, 0px))' }}  >
+        <div className="flex justify-around " style={{ height: '3.5rem' }} >
           <NavButton
             icon={Receipt}
             label="Expenses"
@@ -108,10 +110,10 @@ function NavButton({ icon: Icon, label, active, onClick }) {
     
     <button
       onClick={onClick}
-      className="flex flex-col items-center justify-center py-2 px-3 min-w-[60px]"
+      className="flex flex-col items-center justify-center py-1 min-w-[60px]"
     >
       <Icon 
-        size={24} 
+        size={20} 
         className={active ? 'text-indigo-600' : 'text-gray-400'}
         strokeWidth={active ? 2.5 : 2}
       />
