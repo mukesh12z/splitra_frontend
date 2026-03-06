@@ -7,13 +7,13 @@ import MembersTab     from './MembersTab';
 import DocumentsTab   from './Documentstab';
 import ToolsTab       from './ToolsTab';
 
-import AppDrawer from './AppDrawer';
+//import AppDrawer from './AppDrawer';
 
 function GroupDashboard({ group, currentUser, onBack, onLogout }) {
   const [activeTab,  setActiveTab]  = useState('expenses');
   const [groupData,  setGroupData]  = useState(group);
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  //const [drawerOpen, setDrawerOpen] = useState(false);
   // If no group data, show loading
   if (!groupData) {
     return (
@@ -37,16 +37,7 @@ function GroupDashboard({ group, currentUser, onBack, onLogout }) {
   };
 
    return (
-    <>
-    {/* Drawer */}
-      <AppDrawer 
-        isOpen={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        currentUser={currentUser}
-        onLogout={onLogout}
-        onOpenSettings={() => {/* Navigate to settings */}}
-      />
-
+    
     <div className="flex flex-col h-screen bg-gray-50">
       {/* Top Header - Fixed */}
       <div className="bg-white shadow-sm p-4 flex items-center gap-3">
@@ -73,7 +64,7 @@ function GroupDashboard({ group, currentUser, onBack, onLogout }) {
 
       {/* Bottom Navigation - Fixed */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-pb overflow-hidden"  >
-        <div className="flex justify-around items-center h-16" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+        <div className="flex justify-around items-center h-16" >
           <NavButton
             icon={Receipt}
             label="Expenses"
@@ -107,7 +98,7 @@ function GroupDashboard({ group, currentUser, onBack, onLogout }) {
         </div>
       </div>
     </div>
-    </>
+  
   );
 }
 

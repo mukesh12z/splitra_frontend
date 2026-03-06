@@ -68,10 +68,19 @@ function App() {
   }
  
   return (
+    <>
+      {/* Drawer */}
+      <AppDrawer 
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        currentUser={currentUser}
+        onLogout={onLogout}
+        onOpenSettings={() => {/* Navigate to settings */}}
+      />
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
       <header className="bg-white shadow-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}>
           <div className="flex items-center gap-3">
             <Users className="text-indigo-600" size={32} />
             <div>
@@ -110,6 +119,7 @@ function App() {
         />
       )}
     </div>
+    </>
   );
 }
 
