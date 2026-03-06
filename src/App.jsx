@@ -10,13 +10,15 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 import { Capacitor } from '@capacitor/core';
 
 import { Menu } from 'lucide-react';
-
+import AppDrawer from './AppDrawer';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
   
   useEffect(() => {
     const token = localStorage.getItem('token');

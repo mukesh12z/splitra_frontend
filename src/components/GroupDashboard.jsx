@@ -6,14 +6,14 @@ import MapTab         from './MapTab';
 import MembersTab     from './MembersTab';
 import DocumentsTab   from './Documentstab';
 import ToolsTab       from './ToolsTab';
+
 import AppDrawer from './AppDrawer';
-import { Menu } from 'lucide-react';
 
 function GroupDashboard({ group, currentUser, onBack, onLogout }) {
   const [activeTab,  setActiveTab]  = useState('expenses');
   const [groupData,  setGroupData]  = useState(group);
-  const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const [drawerOpen, setDrawerOpen] = useState(false);
   // If no group data, show loading
   if (!groupData) {
     return (
