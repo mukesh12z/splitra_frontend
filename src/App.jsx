@@ -12,7 +12,7 @@ import { Capacitor } from '@capacitor/core';
 import { Menu } from 'lucide-react';
 import AppDrawer from './components/AppDrawer';
 
-function App() {
+function App(onLogout ) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState(null);
