@@ -1,6 +1,5 @@
 import React from 'react';
-import { X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
-import { Users, LogOut } from 'lucide-react';
+import { Users, X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
 import UserSettings from './components/UserSettings';
 import DeleteAccount from './pages/DeleteAccount';
 
