@@ -10,7 +10,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 import { Capacitor } from '@capacitor/core';
 
 import { Menu } from 'lucide-react';
-import AppDrawer from './AppDrawer';
+import AppDrawer from './components/AppDrawer';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
