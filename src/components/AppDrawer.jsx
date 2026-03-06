@@ -1,36 +1,19 @@
-import {React,useEffect,useState}  from 'react';
-import { Users, X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
-import UserSettings from './UserSettings';
+import React from 'react';
+import { X, Settings, LogOut, User, HelpCircle, Info } from 'lucide-react';
 
 function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
   if (!isOpen) return null;
- useEffect(() => {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    
-    const [showSettings, setShowSettings] = useState(false);
-
-    if (token && user) {
-      setIsAuthenticated(true);
-      setCurrentUser(JSON.parse(user));
-    }
-  }, []);
-
-  const path = window.location.pathname;
-  
-  
-  const handleLogin = (user, token) => {
-    setIsAuthenticated(true);
-    setCurrentUser(user);
-  };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setIsAuthenticated(false);
-    setCurrentUser(null);
-    setSelectedGroup(null);
+    onClose();
+    if (onLogout) onLogout();
   };
+
+  const handleSettings = () => {
+    onClose();
+    if (onOpenSettings) onOpenSettings();
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -40,7 +23,7 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
       />
 
       {/* Drawer */}
-      <div className="fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-2xl transform transition-transform duration-300">
+      <div className="fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-2xl">
         {/* Header */}
         <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-6 text-white">
           <button onClick={onClose} className="absolute top-4 right-4">
@@ -52,52 +35,48 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
               <User size={32} className="text-indigo-600" />
             </div>
             <div>
-              <h3 className="font-bold text-lg">{currentUser?.name}</h3>
-              <p className="text-sm text-blue-100">{currentUser?.email}</p>
+              <h3 className="font-bold text-lg">{currentUser?.name || 'User'}</h3>
+              <p className="text-sm text-blue-100">{currentUser?.email || ''}</p>
             </div>
           </div>
         </div>
 
         {/* Menu Items */}
         <div className="p-4 space-y-2">
+          {/* Settings - Working */}
           <MenuItem 
             icon={Settings} 
             label="Settings" 
-            onClick={() => {
-              setShowSettings(true);
-              onClose();
-            }}
+            onClick={handleSettings}
           />
           
+          {/* My Profile - Disabled for now */}
           <MenuItem 
             icon={User} 
             label="My Profile" 
-            onClick={() => {
-              // Navigate to profile
-              onClose();
-            }}
+            onClick={() => alert('Coming soon!')}
+            disabled
           />
           
+          {/* Help & Support - Disabled for now */}
           <MenuItem 
             icon={HelpCircle} 
             label="Help & Support" 
-            onClick={() => {
-              // Navigate to help
-              onClose();
-            }}
+            onClick={() => alert('Coming soon!')}
+            disabled
           />
           
+          {/* About - Disabled for now */}
           <MenuItem 
             icon={Info} 
-            label="About SpliTravel" 
-            onClick={() => {
-              // Navigate to about
-              onClose();
-            }}
+            label="About TravelMate" 
+            onClick={() => alert('Coming soon!')}
+            disabled
           />
           
           <div className="border-t my-4" />
           
+          {/* Logout - Working */}
           <MenuItem 
             icon={LogOut} 
             label="Logout" 
@@ -108,23 +87,29 @@ function AppDrawer({ isOpen, onClose, currentUser, onLogout, onOpenSettings }) {
 
         {/* Footer */}
         <div className="absolute bottom-0 left-0 right-0 p-4 text-center text-xs text-gray-500 border-t">
-          SpliTravel v1.0.0
+          TravelMate v1.0.0
         </div>
       </div>
     </>
   );
 }
 
-function MenuItem({ icon: Icon, label, onClick, danger }) {
+function MenuItem({ icon: Icon, label, onClick, danger, disabled }) {
   return (
     <button
-      onClick={onClick}
-      className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition ${
-        danger ? 'text-red-500' : 'text-gray-700'
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
+      className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition ${
+        disabled 
+          ? 'text-gray-400 cursor-not-allowed' 
+          : danger 
+            ? 'text-red-500 hover:bg-red-50' 
+            : 'text-gray-700 hover:bg-gray-100'
       }`}
     >
       <Icon size={22} />
       <span className="font-medium">{label}</span>
+      {disabled && <span className="ml-auto text-xs">(Soon)</span>}
     </button>
   );
 }

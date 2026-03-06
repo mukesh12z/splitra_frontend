@@ -75,28 +75,8 @@ function App(onLogout ) {
         onClose={() => setDrawerOpen(false)}
         currentUser={currentUser}
         onLogout={onLogout}
-        onOpenSettings={() => {/* Navigate to settings */}}
+        onOpenSettings={() => setShowSettings(true)}
       />
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}>
-          <div className="flex items-center gap-3">
-            <Users className="text-indigo-600" size={32} />
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800">SpliTravel</h1>
-               <button onClick={() => setDrawerOpen(true)} className="p-2">
-                  <Menu size={24} />
-                </button>
-              {selectedGroup && (
-                <p className="text-sm text-gray-600">{selectedGroup.name}</p>
-              )}
-            </div>
-          </div>
-          
-        </div>
-      </header>
-
       {/* Main Content */}
     {selectedGroup ? (
         <GroupDashboard 
@@ -118,6 +98,27 @@ function App(onLogout ) {
           onSelectGroup={setSelectedGroup}
         />
       )}
+    
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Header */}
+      <header className="bg-white shadow-md sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}>
+          <div className="flex items-center gap-3">
+            <Users className="text-indigo-600" size={32} />
+            <div>
+              <h1 className="text-2xl font-bold text-gray-800">SpliTravel</h1>
+               <button onClick={() => setDrawerOpen(true)} className="p-2">
+                  <Menu size={24} />
+                </button>
+              {selectedGroup && (
+                <p className="text-sm text-gray-600">{selectedGroup.name}</p>
+              )}
+            </div>
+          </div>
+          
+        </div>
+      </header>
+
     </div>
     </>
   );
