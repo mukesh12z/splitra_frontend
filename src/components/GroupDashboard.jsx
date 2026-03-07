@@ -55,7 +55,7 @@ function GroupDashboard({ group, currentUser, onBack}) {
 
       {/* Content Area - Scrollable */}
       <div className="flex-1 overflow-y-auto pb-20"   style={{ 
-    paddingBottom: 'calc(150px + env(safe-area-inset-bottom, 0px)))' // ✅ Match nav height
+    paddingBottom: 'calc(200px + env(safe-area-inset-bottom, 0px)))' // ✅ Match nav height
   }}>
         {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
