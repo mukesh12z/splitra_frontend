@@ -55,7 +55,7 @@ function GroupDashboard({ group, currentUser, onBack}) {
 
       {/* Content Area - Scrollable */}
       <div className="flex-1 overflow-y-auto pb-20"   style={{ 
-    paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom, 0px)))' // ✅ Match nav height
+    paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px)))' // ✅ Match nav height
   }}>
         {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
         {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
@@ -65,8 +65,8 @@ function GroupDashboard({ group, currentUser, onBack}) {
       </div>
 
       {/* Bottom Navigation - Fixed */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-pb overflow-hidden" style={{ paddingBottom: 'max(0.5rem + env(safe-area-inset-bottom, 0px))' }}  >
-        <div className="flex justify-around " style={{ height: '4.5rem' }} >
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-pb overflow-hidden" style={{height: '64px', paddingBottom: 'max(0.5rem + env(safe-area-inset-bottom, 0px))' }}  >
+        <div className="flex justify-around items-center h-full"  >
           <NavButton
             icon={Receipt}
             label="Expenses"
@@ -110,7 +110,7 @@ function NavButton({ icon: Icon, label, active, onClick }) {
     
     <button
       onClick={onClick}
-      className="flex flex-col items-center justify-center py-1 min-w-[60px]"
+      className="flex flex-col items-center justify-center min-w-[60px]"
     >
       <Icon 
         size={20} 
