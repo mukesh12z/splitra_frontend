@@ -60,7 +60,7 @@ export default function ToolsTab({ group, currentUser }) {
 
   /* ── tool grid (landing) ── */
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 tab-content">
       <div>
         <h3 className="text-xl font-bold text-gray-800">Tools</h3>
         <p className="text-sm text-gray-500 mt-1">Handy utilities for your trip</p>

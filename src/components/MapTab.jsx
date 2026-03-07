@@ -154,7 +154,7 @@ export default function MapTab({ group }) {
     : [20.0, 77.0];                                    // fallback India
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 tab-content">
 
       {/* header */}
       {/*do this later, add location, currently the ordering is not happening..no link with itinerary. */}

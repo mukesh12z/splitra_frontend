@@ -70,7 +70,7 @@ function MembersTab({ group, currentUser, onUpdate }) {
   const isAdmin = group.myRole === 'admin' || group.createdBy === currentUser.id;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6  tab-content">
       {/* Invite Section */}
       {/*<div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-6">
         <h3 className="text-lg font-bold text-gray-800 mb-3">Invite Members</h3>

@@ -250,7 +250,7 @@ export default function ItineraryTab({ group }) {
   const sortedDays = Object.keys(grouped).sort();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 tab-content">
 
       {/* header */}
       <div className="flex justify-between items-center">
