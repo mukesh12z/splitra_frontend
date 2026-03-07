@@ -43,3 +43,9 @@ body, html {
 .pr-safe {
   padding-right: max(1rem, var(--sar));
 }
+
+/* All tab content */
+.tab-content {
+  padding: 1rem;
+  padding-bottom: 6rem; /* Extra space for bottom nav */
+}
