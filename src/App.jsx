@@ -66,63 +66,62 @@ function App(onLogout ) {
   if (!isAuthenticated) {
     return <Auth onLogin={handleLogin} />;
   }
- 
-  return (
-    <>
-      {/* Drawer */}
-      <AppDrawer 
-        isOpen={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        currentUser={currentUser}
-        onLogout={handleLogout}
-        onOpenSettings={() => setShowSettings(true)}
-      />
+ return (
+  <>
+    {/* Drawer */}
+    <AppDrawer 
+      isOpen={drawerOpen}
+      onClose={() => setDrawerOpen(false)}
+      currentUser={currentUser}
+      onLogout={handleLogout}
+      onOpenSettings={() => setShowSettings(true)}
+    />
 
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Header */}
-       <div 
+      {/* Header - Only show when NOT in group dashboard */}
+      {!selectedGroup && (
+        <div 
           className="bg-white shadow-sm px-4 py-3 flex-shrink-0"
           style={{ paddingTop: 'env(safe-area-inset-top, 12px)' }}
         >
-          <div className="flex items-center gap-3">
-            <Users className="text-indigo-600" size={24} />
-            <div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Users className="text-indigo-600" size={24} />
               <h1 className="text-2xl font-bold text-gray-800">SpliTravel</h1>
-               <button onClick={() => setDrawerOpen(true)} className="p-2 hover:bg-gray-100 rounded-lg">
-                  <Menu size={24} />
-                </button>
-              {selectedGroup && (
-                <p className="text-sm text-gray-600">{selectedGroup.name}</p>
-              )}
             </div>
+            <button onClick={() => setDrawerOpen(true)} className="p-2 hover:bg-gray-100 rounded-lg">
+              <Menu size={24} />
+            </button>
           </div>
         </div>
-{/* Main Content */}
-    {selectedGroup ? (
-        <GroupDashboard 
-          group={selectedGroup} 
-          currentUser={currentUser}
-          onBack={handleBackToGroups}
-        />
-      ) : showSettings ? (
-        <UserSettings 
-          currentUser={currentUser}
-          onLogout={handleLogout}
-          onUpdateUser={(user) => setCurrentUser(user)}
-          onBack={() => setShowSettings(false)}  
-          
-        />
-      ) : (
-        <GroupsList 
-          currentUser={currentUser} 
-          onSelectGroup={setSelectedGroup}
-        />
       )}
-    
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {selectedGroup ? (
+          <GroupDashboard 
+            group={selectedGroup} 
+            currentUser={currentUser}
+            onBack={handleBackToGroups}
+          />
+        ) : showSettings ? (
+          <UserSettings 
+            currentUser={currentUser}
+            onLogout={handleLogout}
+            onUpdateUser={(user) => setCurrentUser(user)}
+            onBack={() => setShowSettings(false)}  
+          />
+        ) : (
+          <GroupsList 
+            currentUser={currentUser} 
+            onSelectGroup={setSelectedGroup}
+          />
+        )}
+      </div>
     </div>
-      
-    </>
-  );
+  </>
+);
+
 }
 
 export default App;

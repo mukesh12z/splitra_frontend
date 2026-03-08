@@ -36,72 +36,72 @@ function GroupDashboard({ group, currentUser, onBack}) {
     setGroupData({ ...groupData, ...updatedData });
   };
 
-   return (
-    
-    <div className="flex flex-col h-screen bg-gray-50" style={{ paddingTop: 'max(0.5rem, env(safe-area-inset-top, 0px))' }}>
-      {/* Top Header - Fixed */}
-      <div className="bg-white shadow-sm p-4 flex items-center gap-3">
-        <button onClick={onBack} className="text-indigo-600">
-          <ArrowLeft size={24} />
-        </button>
-        <div className="flex-1">
-          <h2 className="font-bold text-lg text-gray-800 truncate">{groupData.name}</h2>
-          <p className="text-xs text-gray-500">{groupData.GroupMembers?.length || 0} members</p>
-        </div>
-        <button className="text-gray-600">
-          <MoreVertical size={24} />
-        </button>
+return (
+  <div className="flex flex-col flex-1"> {/* ✅ Changed from h-screen to flex-1 */}
+    {/* Top Header */}
+    <div className="bg-white shadow-sm p-4 flex items-center gap-3 flex-shrink-0">
+      <button onClick={onBack} className="text-indigo-600">
+        <ArrowLeft size={24} />
+      </button>
+      <div className="flex-1">
+        <h2 className="font-bold text-lg text-gray-800 truncate">{groupData.name}</h2>
+        <p className="text-xs text-gray-500">{groupData.GroupMembers?.length || 0} members</p>
       </div>
-
-      {/* Content Area - Scrollable */}
-      <div className="flex-1 overflow-y-auto "  >
-        <div className="min-h-full">
-        {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
-        {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
-        {activeTab === 'map' && <MapTab group={groupData} currentUser={currentUser} />}
-        {activeTab === 'members' && <MembersTab group={groupData} currentUser={currentUser} />}
-        {activeTab === 'tools' && <ToolsTab group={groupData} currentUser={currentUser} />}
-        </div>
-      </div>
-
-      {/* Bottom Navigation - Fixed */}
-      <div className="bg-white border-t flex-shrink-0" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }} >
-            <div className="flex justify-around items-center h-16" >
-          <NavButton
-            icon={Receipt}
-            label="Expenses"
-            active={activeTab === 'expenses'}
-            onClick={() => setActiveTab('expenses')}
-          />
-          <NavButton
-            icon={Calendar}
-            label="Itinerary"
-            active={activeTab === 'itinerary'}
-            onClick={() => setActiveTab('itinerary')}
-          />
-          <NavButton
-            icon={MapPin}
-            label="Map"
-            active={activeTab === 'map'}
-            onClick={() => setActiveTab('map')}
-          />
-          <NavButton
-            icon={Users}
-            label="Members"
-            active={activeTab === 'members'}
-            onClick={() => setActiveTab('members')}
-          />
-          <NavButton
-            icon={Wrench}
-            label="Tools"
-            active={activeTab === 'tools'}
-            onClick={() => setActiveTab('tools')}
-          />
-        </div>
-      </div>
+      <button className="text-gray-600">
+        <MoreVertical size={24} />
+      </button>
     </div>
-  
-  );
+
+    {/* Content Area - Scrollable */}
+    <div className="flex-1 overflow-y-auto">
+      {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
+      {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
+      {activeTab === 'map' && <MapTab group={groupData} currentUser={currentUser} />}
+      {activeTab === 'members' && <MembersTab group={groupData} currentUser={currentUser} />}
+      {activeTab === 'tools' && <ToolsTab group={groupData} currentUser={currentUser} />}
+    </div>
+
+    {/* Bottom Navigation */}
+    <div 
+      className="bg-white border-t flex-shrink-0" 
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+    >
+      <div className="flex justify-around items-center h-16">
+        <NavButton
+          icon={Receipt}
+          label="Expenses"
+          active={activeTab === 'expenses'}
+          onClick={() => setActiveTab('expenses')}
+        />
+        <NavButton
+          icon={Calendar}
+          label="Itinerary"
+          active={activeTab === 'itinerary'}
+          onClick={() => setActiveTab('itinerary')}
+        />
+        <NavButton
+          icon={MapPin}
+          label="Map"
+          active={activeTab === 'map'}
+          onClick={() => setActiveTab('map')}
+        />
+        <NavButton
+          icon={Users}
+          label="Members"
+          active={activeTab === 'members'}
+          onClick={() => setActiveTab('members')}
+        />
+        <NavButton
+          icon={Wrench}
+          label="Tools"
+          active={activeTab === 'tools'}
+          onClick={() => setActiveTab('tools')}
+        />
+      </div>
+
+    </div>
+  </div>
+);
 }
 
 // Bottom Nav Button Component
