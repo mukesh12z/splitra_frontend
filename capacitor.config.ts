@@ -9,7 +9,16 @@ const config: CapacitorConfig = {
       style: 'Light',
       backgroundColor: '#4F46E5',
       overlaysWebView: false  // ✅ Critical - don't overlay
+      },
+    // ✅ Add this
+    Keyboard: {
+      resize: 'native'
     }
+  },
+   android: {
+    allowMixedContent: true,
+    captureInput: true,
+    webContentsDebuggingEnabled: true
   }
 };
 

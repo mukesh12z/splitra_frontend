@@ -10,6 +10,8 @@
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
+   overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 /* Safe area insets for notches and navigation bars */
 :root {
@@ -20,11 +22,12 @@ body {
 }
 
 body, html, #root {
+   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  height: 100%;
-  /* Don't add padding here - handle per component */
+  position: fixed; /* ✅ Prevents mobile safari/chrome issues */
 }
 
 /* Utility classes */
