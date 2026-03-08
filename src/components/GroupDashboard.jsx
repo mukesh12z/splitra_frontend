@@ -66,7 +66,7 @@ function GroupDashboard({ group, currentUser, onBack}) {
 
       {/* Bottom Navigation - Fixed */}
       <div className="bg-white border-t flex-shrink-0" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }} >
-            <div className="flex justify-around items-center h-full" >
+            <div className="flex justify-around items-center h-16" >
           <NavButton
             icon={Receipt}
             label="Expenses"
