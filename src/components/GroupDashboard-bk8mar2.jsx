@@ -37,9 +37,9 @@ function GroupDashboard({ group, currentUser, onBack}) {
   };
 
 return (
-  <div className="flex flex-col bg-gray-50" style={{ height: '100vh' }}> {/* ✅ Use inline style */}
+  <div className="h-full flex flex-col bg-gray-50"> {/* ✅ h-full + flex-col */}
     
-    {/* Top Header */}
+    {/* Top Header - Fixed at top */}
     <div className="bg-white shadow-sm p-4 flex items-center gap-3 flex-shrink-0">
       <button onClick={onBack} className="text-indigo-600">
         <ArrowLeft size={24} />
@@ -53,11 +53,8 @@ return (
       </button>
     </div>
 
-    {/* Content Area - Add bottom padding for fixed nav */}
-    <div 
-      className="flex-1 overflow-y-auto" 
-      style={{ paddingBottom: '80px' }} /* ✅ Fixed padding for nav height */
-    >
+    {/* Content Area - Grows and scrolls */}
+    <div className="flex-1 overflow-y-auto"> {/* ✅ This scrolls */}
       {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
       {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
       {activeTab === 'map' && <MapTab group={groupData} currentUser={currentUser} />}
@@ -65,20 +62,42 @@ return (
       {activeTab === 'tools' && <ToolsTab group={groupData} currentUser={currentUser} />}
     </div>
 
-    {/* Bottom Navigation - FIXED positioning */}
+    {/* Bottom Navigation - Fixed at bottom */}
     <div 
-      className="fixed bottom-0 left-0 right-0 bg-white border-t z-50"
-      style={{ 
-        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-        height: '64px'
-      }}
+      className="bg-white border-t flex-shrink-0" 
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
-      <div className="flex justify-around items-center h-full">
-        <NavButton icon={Receipt} label="Expenses" active={activeTab === 'expenses'} onClick={() => setActiveTab('expenses')} />
-        <NavButton icon={Calendar} label="Itinerary" active={activeTab === 'itinerary'} onClick={() => setActiveTab('itinerary')} />
-        <NavButton icon={MapPin} label="Map" active={activeTab === 'map'} onClick={() => setActiveTab('map')} />
-        <NavButton icon={Users} label="Members" active={activeTab === 'members'} onClick={() => setActiveTab('members')} />
-        <NavButton icon={Wrench} label="Tools" active={activeTab === 'tools'} onClick={() => setActiveTab('tools')} />
+      <div className="flex justify-around items-center h-16">
+        <NavButton
+          icon={Receipt}
+          label="Expenses"
+          active={activeTab === 'expenses'}
+          onClick={() => setActiveTab('expenses')}
+        />
+        <NavButton
+          icon={Calendar}
+          label="Itinerary"
+          active={activeTab === 'itinerary'}
+          onClick={() => setActiveTab('itinerary')}
+        />
+        <NavButton
+          icon={MapPin}
+          label="Map"
+          active={activeTab === 'map'}
+          onClick={() => setActiveTab('map')}
+        />
+        <NavButton
+          icon={Users}
+          label="Members"
+          active={activeTab === 'members'}
+          onClick={() => setActiveTab('members')}
+        />
+        <NavButton
+          icon={Wrench}
+          label="Tools"
+          active={activeTab === 'tools'}
+          onClick={() => setActiveTab('tools')}
+        />
       </div>
     </div>
   </div>
