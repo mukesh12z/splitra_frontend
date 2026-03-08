@@ -66,9 +66,8 @@ function App(onLogout ) {
   if (!isAuthenticated) {
     return <Auth onLogin={handleLogin} />;
   }
- return (
+return (
   <>
-    {/* Drawer */}
     <AppDrawer 
       isOpen={drawerOpen}
       onClose={() => setDrawerOpen(false)}
@@ -77,7 +76,8 @@ function App(onLogout ) {
       onOpenSettings={() => setShowSettings(true)}
     />
 
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-100">
+    {/* ✅ Remove min-h-screen, use h-screen instead */}
+    <div className="h-screen flex flex-col">
       {/* Header - Only show when NOT in group dashboard */}
       {!selectedGroup && (
         <div 
@@ -96,8 +96,8 @@ function App(onLogout ) {
         </div>
       )}
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      {/* Main Content - flex-1 takes remaining space */}
+      <div className="flex-1 overflow-hidden"> {/* ✅ overflow-hidden here */}
         {selectedGroup ? (
           <GroupDashboard 
             group={selectedGroup} 

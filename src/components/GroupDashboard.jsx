@@ -37,8 +37,9 @@ function GroupDashboard({ group, currentUser, onBack}) {
   };
 
 return (
-  <div className="flex flex-col flex-1"> {/* ✅ Changed from h-screen to flex-1 */}
-    {/* Top Header */}
+  <div className="h-full flex flex-col bg-gray-50"> {/* ✅ h-full + flex-col */}
+    
+    {/* Top Header - Fixed at top */}
     <div className="bg-white shadow-sm p-4 flex items-center gap-3 flex-shrink-0">
       <button onClick={onBack} className="text-indigo-600">
         <ArrowLeft size={24} />
@@ -52,8 +53,8 @@ return (
       </button>
     </div>
 
-    {/* Content Area - Scrollable */}
-    <div className="flex-1 overflow-y-auto">
+    {/* Content Area - Grows and scrolls */}
+    <div className="flex-1 overflow-y-auto"> {/* ✅ This scrolls */}
       {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
       {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
       {activeTab === 'map' && <MapTab group={groupData} currentUser={currentUser} />}
@@ -61,7 +62,7 @@ return (
       {activeTab === 'tools' && <ToolsTab group={groupData} currentUser={currentUser} />}
     </div>
 
-    {/* Bottom Navigation */}
+    {/* Bottom Navigation - Fixed at bottom */}
     <div 
       className="bg-white border-t flex-shrink-0" 
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
@@ -98,7 +99,6 @@ return (
           onClick={() => setActiveTab('tools')}
         />
       </div>
-
     </div>
   </div>
 );
