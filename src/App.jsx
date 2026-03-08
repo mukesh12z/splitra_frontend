@@ -80,7 +80,10 @@ function App(onLogout ) {
 
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
-      <header className="bg-white shadow-md px-4 py-3 flex-shrink-0 " style={{ paddingTop: 'env(safe-area-inset-top, 12px)' }}>
+       <div 
+          className="bg-white shadow-sm px-4 py-3 flex-shrink-0"
+          style={{ paddingTop: 'env(safe-area-inset-top, 12px)' }}
+        >
           <div className="flex items-center gap-3">
             <Users className="text-indigo-600" size={24} />
             <div>
@@ -93,8 +96,7 @@ function App(onLogout ) {
               )}
             </div>
           </div>
-          
-        </header>
+        </div>
 {/* Main Content */}
     {selectedGroup ? (
         <GroupDashboard 
