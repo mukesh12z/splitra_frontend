@@ -19,11 +19,11 @@ body {
   --sar: env(safe-area-inset-right, 0px);
 }
 
-body, html {
+body, html, #root {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  height: 100vh;
+  height: 100%;
   /* Don't add padding here - handle per component */
 }
 
@@ -45,7 +45,9 @@ body, html {
 }
 
 /* All tab content */
-.tab-content {
-  padding: 1rem;
-  padding-bottom: 6rem; /* Extra space for bottom nav */
+body {
+  padding: env(safe-area-inset-top, 0px) 
+          env(safe-area-inset-right, 0px) 
+          env(safe-area-inset-bottom, 0px) 
+          env(safe-area-inset-left, 0px);
 }

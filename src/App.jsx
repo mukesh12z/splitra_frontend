@@ -78,10 +78,9 @@ function App(onLogout ) {
         onOpenSettings={() => setShowSettings(true)}
       />
 
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center" style={{ paddingTop: 'max(.75rem, env(safe-area-inset-top, 0px))' }}>
+      <header className="bg-white shadow-md px-4 py-3 flex-shrink-0 " style={{ paddingTop: 'env(safe-area-inset-top, 12px)' }}>
           <div className="flex items-center gap-3">
             <Users className="text-indigo-600" size={24} />
             <div>
@@ -95,8 +94,7 @@ function App(onLogout ) {
             </div>
           </div>
           
-        </div>
-      </header>
+        </header>
 {/* Main Content */}
     {selectedGroup ? (
         <GroupDashboard 

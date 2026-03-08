@@ -313,7 +313,7 @@ function ExpensesTab({ group, currentUser, onUpdate }) {
   }
 
   return (
-    <div className="space-y-6 tab-content" >
+    <div className="space-y-6 " >
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
