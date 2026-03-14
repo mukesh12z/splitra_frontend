@@ -56,7 +56,7 @@ return (
     {/* Content Area - Add bottom padding for fixed nav */}
     <div 
       className="flex-1 overflow-y-auto" 
-      style={{ paddingBottom: '128px' }} 
+      style={{ paddingBottom: '120px' }} 
     >
       {activeTab === 'expenses' && <ExpensesTab group={groupData} currentUser={currentUser} />}
       {activeTab === 'itinerary' && <ItineraryTab group={groupData} currentUser={currentUser} />}
@@ -70,8 +70,8 @@ return (
       className="fixed bottom-0 left-0 right-0 bg-white border-t z-50"
       style={{ 
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-        height: '64px',
-        marginBottom: 'env(safe-area-inset-bottom, 0px)' 
+        height: '64px'
+        /*marginBottom: 'env(safe-area-inset-bottom, 0px)'*/ 
       }}
     >
       <div className="flex justify-around items-center h-full">
